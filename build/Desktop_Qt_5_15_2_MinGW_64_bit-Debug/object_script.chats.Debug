@@ -1,0 +1,14 @@
+debug/adduserr.o
+debug/chatslist.o
+debug/connectdatabases.o
+debug/login.o
+debug/main.o
+debug/register.o
+debug/widget.o
+debug/qrc_res.o
+debug/moc_adduserr.o
+debug/moc_chatslist.o
+debug/moc_connectdatabases.o
+debug/moc_login.o
+debug/moc_register.o
+debug/moc_widget.o
