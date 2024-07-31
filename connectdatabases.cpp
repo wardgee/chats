@@ -29,10 +29,11 @@ ConnectDatabases::ConnectDatabases(QString ip, int port, QString database_name,
 }
 
 // 登录查询
-QMap<QString,QString>& ConnectDatabases::queryUser(const QString& account,const QString& password)
+QMap<QString,QString> ConnectDatabases::queryUser(const QString& account,const QString& password)
 {
     QSqlQuery query(db);
     QString sql = "select * from chats_users where username = :account and password = :password";
+    QMap<QString,QString> user_map;// 用于保存查询出来的结果集
 
     query.prepare(sql);
     query.bindValue(":account", account);
@@ -135,6 +136,37 @@ bool ConnectDatabases::addFriend(const int self_id, const QString &ids)
     }else{
         return true;
     }
+}
+
+QMap<QString, QString> ConnectDatabases::findUserBaseId(int id)
+{
+    QSqlQuery query(db);
+    QString sql = "select * from chats_users where id = :id";
+    QMap<QString,QString> user_map;// 用于保存查询出来的结果集
+    user_map.insert("error","无记录");
+
+    query.prepare(sql);
+    query.bindValue(":id",id);
+
+    if(!query.exec()){
+        qDebug()<< query.lastError();
+    }
+
+    if(query.next()){
+
+        user_map.remove("error");// 删除错误提示
+
+        // 从当前记录中取出各个字段的值
+        user_map.insert("id",query.value(0).toString());
+        user_map.insert("username",query.value(1).toString());
+        user_map.insert("password",query.value(2).toString());
+        user_map.insert("friends_id",query.value(3).toString());
+
+    }else{
+        qDebug()<< "没有这个id:"+QString::number(id)+"的用户";
+
+    }
+    return user_map;
 }
 
 

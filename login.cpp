@@ -40,7 +40,7 @@ void Login::on_login_clicked()
     ConnectDatabases d("127.0.0.1", 3306, "chats_database", "root", "liweijiaw");
 
 
-    QMap<QString, QString>& user = d.queryUser(account, password);
+    QMap<QString, QString> user = d.queryUser(account, password);
     if (user.isEmpty()) {
         // 用户不存在
         QMessageBox::warning(this, "登录失败", "用户名或密码错误！");

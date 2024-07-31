@@ -13,7 +13,7 @@ class ChatsList : public QWidget
     Q_OBJECT
 
 public:
-    explicit ChatsList(const QMap<QString,QString>& user,QWidget *parent = nullptr);
+    explicit ChatsList(const QMap<QString,QString> user,QWidget *parent = nullptr);
     ~ChatsList();
 
 private slots:

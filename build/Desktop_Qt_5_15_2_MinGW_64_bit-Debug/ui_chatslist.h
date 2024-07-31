@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QToolBox>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -23,8 +24,11 @@ class Ui_ChatsList
 public:
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QToolBox *toolBox;
     QWidget *page;
+    QVBoxLayout *box_layout;
+    QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *ChatsList)
     {
@@ -38,19 +42,31 @@ public:
 
         verticalLayout->addWidget(pushButton);
 
+        pushButton_2 = new QPushButton(ChatsList);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        verticalLayout->addWidget(pushButton_2);
+
         toolBox = new QToolBox(ChatsList);
         toolBox->setObjectName(QString::fromUtf8("toolBox"));
         page = new QWidget();
         page->setObjectName(QString::fromUtf8("page"));
-        page->setGeometry(QRect(0, 0, 241, 473));
-        toolBox->addItem(page, QString::fromUtf8("\346\210\220\345\221\230"));
+        page->setGeometry(QRect(0, 0, 241, 206));
+        box_layout = new QVBoxLayout(page);
+        box_layout->setObjectName(QString::fromUtf8("box_layout"));
+        toolBox->addItem(page, QString::fromUtf8("\345\245\275\345\217\213"));
 
         verticalLayout->addWidget(toolBox);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
 
 
         retranslateUi(ChatsList);
 
         toolBox->setCurrentIndex(0);
+        toolBox->layout()->setSpacing(0);
 
 
         QMetaObject::connectSlotsByName(ChatsList);
@@ -60,7 +76,8 @@ public:
     {
         ChatsList->setWindowTitle(QCoreApplication::translate("ChatsList", "Form", nullptr));
         pushButton->setText(QCoreApplication::translate("ChatsList", "\346\267\273\345\212\240\345\245\275\345\217\213", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page), QCoreApplication::translate("ChatsList", "\346\210\220\345\221\230", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("ChatsList", "\345\210\240\351\231\244\345\245\275\345\217\213", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page), QCoreApplication::translate("ChatsList", "\345\245\275\345\217\213", nullptr));
     } // retranslateUi
 
 };

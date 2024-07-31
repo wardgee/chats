@@ -4,7 +4,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 
-AddUserr::AddUserr(const int self_id,QList<int>& friend_ids,QWidget *parent)
+AddUserr::AddUserr(const int self_id,QList<int> friend_ids,QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddUserr) , id_list(friend_ids),self_id(self_id)
 {
