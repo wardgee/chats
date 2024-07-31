@@ -99,18 +99,6 @@ bool ConnectDatabases::upUser(QString username,QString password,QString frients_
     }
 }
 
-// 返回0：删除成功 返回1：添加成功 返回-1：没有这个好友
-// chose = 1 添加好友 chose = 0 删除好友
-int ConnectDatabases::changeUserFriendsList(QString friend_id, int chose)
-{
-    QString sql;
-    if(chose == 1){
-
-        sql = "update chats_users set frients_id = '9,3' where username = 'sdsddddd';";
-
-    }
-}
-
 int ConnectDatabases::findUser(const QString account)
 {
     QSqlQuery query(db);
@@ -138,17 +126,15 @@ bool ConnectDatabases::addFriend(const int self_id, const QString &ids)
     QString sql = "update chats_users set frients_id = :ids where id = :self_id";
 
     query.prepare(sql);
+
     query.bindValue(":ids",ids);
     query.bindValue(":self_id",self_id);
-
     if(!query.exec()){
         qDebug()<< query.lastError();
         return false;
     }else{
         return true;
     }
-
-
 }
 
 
