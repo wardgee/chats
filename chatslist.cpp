@@ -5,7 +5,7 @@
 #include <qtoolbutton.h>
 #include "adduserr.h"
 
-ChatsList::ChatsList(QMap<QString,QString>& user,QWidget *parent)
+ChatsList::ChatsList(const QMap<QString,QString>& user,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::ChatsList),user(user)
 {
@@ -33,7 +33,8 @@ ChatsList::~ChatsList()
 // 添加好友
 void ChatsList::on_pushButton_clicked()
 {
-    AddUserr *window = new AddUserr(user);
+    int self_id = user["id"].toInt();
+    AddUserr *window = new AddUserr(self_id,friend_ids);
     window->show();
 }
 

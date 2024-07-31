@@ -29,7 +29,7 @@ ConnectDatabases::ConnectDatabases(QString ip, int port, QString database_name,
 }
 
 // 登录查询
-QMap<QString,QString>& ConnectDatabases::queryUser(QString& account,QString& password)
+QMap<QString,QString>& ConnectDatabases::queryUser(const QString& account,const QString& password)
 {
     QSqlQuery query(db);
     QString sql = "select * from chats_users where username = :account and password = :password";
@@ -61,7 +61,7 @@ QMap<QString,QString>& ConnectDatabases::queryUser(QString& account,QString& pas
 }
 
 // 添加用户
-bool ConnectDatabases::upsize(QString username,QString password,QString frients_id)
+bool ConnectDatabases::upUser(QString username,QString password,QString frients_id)
 {
     QSqlQuery query(db);
     QString sql ="";
@@ -131,8 +131,29 @@ int ConnectDatabases::findUser(const QString account)
     }
 }
 
+// 更新用户好友
+bool ConnectDatabases::addFriend(const int self_id, const QString &ids)
+{
+    QSqlQuery query(db);
+    QString sql = "update chats_users set frients_id = :ids where id = :self_id";
 
-// 用户添加或删除好友
+    query.prepare(sql);
+    query.bindValue(":ids",ids);
+    query.bindValue(":self_id",self_id);
+
+    if(!query.exec()){
+        qDebug()<< query.lastError();
+        return false;
+    }else{
+        return true;
+    }
+
+
+}
+
+
+
+
 
 
 ConnectDatabases::~ConnectDatabases()

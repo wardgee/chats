@@ -17,10 +17,11 @@ public:
     explicit ConnectDatabases(QString ip ,int port,QString database_name ,
                               QString username ,QString password,QString type = "QMYSQL",QObject *parent = nullptr);
 
-    QMap<QString,QString>& queryUser(QString& account,QString& password);
-    bool upsize(QString username,QString password,QString frients_id = "");
+    QMap<QString,QString>& queryUser(const QString& account,const QString& password);
+    bool upUser(QString username,QString password,QString frients_id = "");
     int changeUserFriendsList(QString friend_id,int chose);
     int findUser(const QString account);
+    bool addFriend(const int self_id ,const QString& ids);
     ~ConnectDatabases();
 private:
     QMap<QString,QString> user_map;// 用于保存查询出来的结果集
