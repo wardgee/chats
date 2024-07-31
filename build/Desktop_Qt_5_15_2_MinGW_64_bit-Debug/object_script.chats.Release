@@ -1,6 +1,7 @@
 release/adduserr.o
 release/chatslist.o
 release/connectdatabases.o
+release/deleteuser.o
 release/login.o
 release/main.o
 release/register.o
@@ -9,6 +10,7 @@ release/qrc_res.o
 release/moc_adduserr.o
 release/moc_chatslist.o
 release/moc_connectdatabases.o
+release/moc_deleteuser.o
 release/moc_login.o
 release/moc_register.o
 release/moc_widget.o

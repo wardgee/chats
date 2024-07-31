@@ -6,9 +6,11 @@
 
 AddUserr::AddUserr(const int self_id,QList<int> friend_ids,QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::AddUserr) , id_list(friend_ids),self_id(self_id)
+    , ui(new Ui::AddUserr)
 {
     ui->setupUi(this);
+    this->id_list = friend_ids;
+    this->self_id = self_id;
 }
 
 AddUserr::~AddUserr()
@@ -22,7 +24,7 @@ void AddUserr::on_add_friend_btn_clicked()
 {
 
     QString friend_account = ui->account->text();
-    ConnectDatabases d("127.0.0.1", 3306, "chats_database", "root", "liweijiaw");
+    ConnectDatabases d;
     int friend_id =  d.findUser(friend_account);// 得到要添加的用户的id
 
     if(friend_id == 0){
@@ -47,7 +49,7 @@ void AddUserr::on_add_friend_btn_clicked()
             qDebug() << *it;
         }
 
-        if(d.addFriend(self_id,id_list_string)){
+        if(d.updateFriendList(self_id,id_list_string)){
            QMessageBox::information(this,"提示","添加成功");
         }
 

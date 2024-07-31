@@ -12,6 +12,7 @@ SOURCES += \
     adduserr.cpp \
     chatslist.cpp \
     connectdatabases.cpp \
+    deleteuser.cpp \
     login.cpp \
     main.cpp \
     register.cpp \
@@ -21,6 +22,7 @@ HEADERS += \
     adduserr.h \
     chatslist.h \
     connectdatabases.h \
+    deleteuser.h \
     login.h \
     register.h \
     widget.h
@@ -28,6 +30,7 @@ HEADERS += \
 FORMS += \
     adduserr.ui \
     chatslist.ui \
+    deleteuser.ui \
     login.ui \
     register.ui \
     widget.ui

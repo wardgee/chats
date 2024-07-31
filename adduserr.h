@@ -21,7 +21,7 @@ private slots:
 private:
     Ui::AddUserr *ui;
     QList<int> id_list;
-    const int self_id;
+    int self_id;
 };
 
 #endif // ADDUSERR_H

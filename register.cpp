@@ -34,8 +34,8 @@ void Register::on_pushButton_clicked()
     }
 
     // 连接数据库
-    ConnectDatabases d("127.0.0.1",3306,"chats_database","root","liweijiaw");
-    if(d.upUser(account,password)){// 插入到数据库
+    ConnectDatabases db;
+    if(db.upUser(account,password)){// 插入到数据库
         QMessageBox::information(this,"通知","注册成功！点击返回登录页面");
         this->close();
         parentWidget()->show();

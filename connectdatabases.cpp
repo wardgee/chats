@@ -46,7 +46,6 @@ QMap<QString,QString> ConnectDatabases::queryUser(const QString& account,const Q
         qDebug()<< query.lastError();
     }
 
-
     // 遍历结果集
     if(query.next())
     {
@@ -55,9 +54,7 @@ QMap<QString,QString> ConnectDatabases::queryUser(const QString& account,const Q
         user_map.insert("username",query.value(1).toString());
         user_map.insert("password",query.value(2).toString());
         user_map.insert("friends_id",query.value(3).toString());
-
     }
-
     return user_map;
 }
 
@@ -121,7 +118,8 @@ int ConnectDatabases::findUser(const QString account)
 }
 
 // 更新用户好友
-bool ConnectDatabases::addFriend(const int self_id, const QString &ids)
+// ids:好友的id列表（字符串形式）
+bool ConnectDatabases::updateFriendList(const int self_id, const QString &ids)
 {
     QSqlQuery query(db);
     QString sql = "update chats_users set frients_id = :ids where id = :self_id";
@@ -136,6 +134,11 @@ bool ConnectDatabases::addFriend(const int self_id, const QString &ids)
     }else{
         return true;
     }
+}
+
+bool ConnectDatabases::deleteFriend(const QString &account)
+{
+
 }
 
 QMap<QString, QString> ConnectDatabases::findUserBaseId(int id)
